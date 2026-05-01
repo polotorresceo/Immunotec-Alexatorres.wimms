@@ -424,8 +424,22 @@ footer span{color:var(--wimms2);}
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <a class="nav-logo" href="https://www.immunotec.com/es-MX" target="_blank" rel="noopener">
-    <img src="https://i..co/8gV4Hhhn/Whats-App-Image-2026-05-01-at-00-52-36.jpg" alt="Immunotec">
+  <a class="nav-logo" href="https://www.immunotec.com/es-MX" target="_blank" rel="noopener" style="text-decoration:none;">
+    <!-- Logo Immunotec: círculo azul rey con filo dorado -->
+    <div style="
+      width:52px;height:52px;border-radius:50%;
+      background:linear-gradient(145deg,#1249c7 0%,#0a3aad 60%,#082e8a 100%);
+      border:2.5px solid transparent;
+      background-clip:padding-box;
+      box-shadow:0 0 0 2.5px #c8922a, 0 0 0 4px rgba(200,146,42,0.25), 0 4px 16px rgba(10,61,210,0.5);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      flex-shrink:0;
+      transition:box-shadow .25s;
+    ">
+      <span style="font-size:0.42rem;font-weight:900;color:#f5d98a;letter-spacing:1.5px;text-transform:uppercase;line-height:1;font-family:'Nunito',sans-serif;">IMMUNO</span>
+      <span style="font-size:0.5rem;font-weight:900;color:#ffffff;letter-spacing:1px;text-transform:uppercase;line-height:1.3;font-family:'Nunito',sans-serif;">TEC</span>
+      <span style="font-size:0.32rem;color:rgba(245,217,138,0.7);letter-spacing:0.5px;line-height:1.4;font-family:'Inter',sans-serif;">since 1996</span>
+    </div>
     <span class="nav-store">immunotec.com/es-MX</span>
   </a>
   <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20g%C3%B3mitas%20Wimms" class="nav-wa" target="_blank">
@@ -434,7 +448,38 @@ footer span{color:var(--wimms2);}
   </a>
 </nav>
 
-<!-- ESPACIO NAVBAR -->
+<!-- BANNER PRINCIPAL — nítido y responsivo -->
+<div style="
+  width:100%;
+  padding-top:68px;
+  line-height:0;
+  position:relative;
+  z-index:1;
+  background:#020b1a;
+">
+  <img
+    src="https://i.ibb.co/Mxp2jx0D"
+    alt="¡Feliz Día del Niño! Wimms – Immunotec · Alexa Torres"
+    style="
+      width:100%;
+      height:auto;
+      display:block;
+      max-width:100%;
+      /* nítidez máxima: no escalar con blur */
+      image-rendering:auto;
+      -webkit-backface-visibility:hidden;
+      backface-visibility:hidden;
+      border-bottom:3px solid rgba(200,146,42,0.35);
+    "
+    loading="eager"
+  >
+</div>
+<!-- Compensación responsive para navbar móvil -->
+<style>
+@media(max-width:480px){
+  div[style*="padding-top:68px"]{padding-top:52px!important;}
+}
+</style>
 
 <!-- PROMO STRIP -->
 <div class="promo-strip">
