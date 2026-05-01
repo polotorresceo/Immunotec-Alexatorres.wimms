@@ -359,8 +359,8 @@ section{position:relative;z-index:1;}
 .presenter-magnetic{max-width:920px;margin:0 auto;background:linear-gradient(135deg,rgba(4,18,40,0.97),rgba(2,11,26,0.97));border:1px solid rgba(168,85,247,0.3);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:360px 1fr;box-shadow:0 0 80px rgba(124,58,237,0.15),0 0 0 1px rgba(168,85,247,0.08);position:relative;}
 .presenter-magnetic::after{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0) 10%,rgba(168,85,247,0.9) 30%,#e0b0ff 50%,rgba(168,85,247,0.9) 70%,rgba(168,85,247,0) 90%,transparent 100%);box-shadow:0 0 18px 5px rgba(168,85,247,0.6),0 0 40px 10px rgba(168,85,247,0.2);z-index:10;top:0;pointer-events:none;animation:laser-scan 3.5s ease-in-out infinite;}
 @keyframes laser-scan{0%{top:0%;opacity:0;}5%{opacity:1;}48%{top:100%;opacity:1;}52%{top:100%;opacity:0;}53%{top:0%;opacity:0;}100%{top:0%;opacity:0;}}
-.presenter-img-side{position:relative;overflow:hidden;height:480px;flex-shrink:0;background:linear-gradient(160deg,rgba(124,58,237,0.15),rgba(2,11,26,0.9));display:flex;align-items:center;justify-content:center;}
-.presenter-img-side img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;filter:brightness(1.1) drop-shadow(0 0 40px rgba(168,85,247,0.4));transition:transform .5s ease;}
+.presenter-img-side{position:relative;overflow:hidden;height:480px;flex-shrink:0;}
+.presenter-img-side img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(1.1) contrast(1.05) saturate(1.08);transition:transform .5s ease;}
 .presenter-magnetic:hover .presenter-img-side img{transform:scale(1.04);}
 .presenter-info{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:13px;position:relative;z-index:2;}
 .presenter-badge2{display:inline-flex;align-items:center;gap:7px;background:rgba(124,58,237,0.15);border:1px solid rgba(168,85,247,0.35);border-radius:30px;padding:5px 15px;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--wimms2);width:fit-content;font-family:'Nunito',sans-serif;}
@@ -435,12 +435,10 @@ footer span{color:var(--wimms2);}
 </nav>
 
 <!-- BANNER WIMMS DÍA DEL NIÑO -->
-
-  
-  <div class="banner-wimms" style="padding-top:68px;">
-  <img src="https://i.ibb.co/zVXvt4zS/Gemini-Generated-Image-d1kfwhd1kfwhd1kf-1.png"
-       onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#7c3aed,#a855f7,#f97316)';this.parentElement.style.minHeight='220px';this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;min-height:220px;text-align:center;padding:40px 20px;\'><div><p style=\'font-family:Nunito,sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;\'>🎉 ¡Feliz Día del Niño! 🎉</p><p style=\'font-size:1.2rem;color:rgba(255,255,255,0.85);margin-top:10px;font-family:Nunito,sans-serif;font-weight:700;\'>WIMMS · El mejor suplemento para niños ✨</p></div></div>'"
-       alt="¡Feliz Día del Niño! Wimms – El mejor suplemento para niños">
+<div class="banner-wimms" style="padding-top:68px;">
+  <img src="https://i.ibb.co/p6pq6RsZ/Gemini-Generated-Image-d1kfwhd1kfwhd1kf-1.png"
+       alt="¡Feliz Día del Niño! Wimms – El mejor suplemento para niños"
+       style="width:100%;height:auto;display:block;">
 </div>
 
 <!-- PROMO STRIP -->
@@ -477,9 +475,9 @@ footer span{color:var(--wimms2);}
       <div class="wimms-product-card">
         <div class="wimms-badge-promo">🎉 25% OFF · Día del Niño</div>
         <div class="wimms-img-wrap">
-          <img src="https://i.ibb.co/placeholder-wimms/wimms-bottle.png"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:5rem;line-height:1;\'>🍬</div>'"
-               alt="Wimms Gomitas Immunotec">
+          <img src="https://i.ibb.co/p6pq6RsZ/Gemini-Generated-Image-d1kfwhd1kfwhd1kf-1.png"
+               alt="Wimms Gomitas Immunotec – Feliz Día del Niño"
+               style="border-radius:12px;">
         </div>
         <h3 style="font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">WIMMS!</h3>
         <p style="color:var(--mist);font-size:0.9rem;line-height:1.7;">El suplemento nutraceútico líder para niños — delicioso, efectivo y respaldado por Immunotec.</p>
@@ -565,6 +563,13 @@ footer span{color:var(--wimms2);}
     <div class="purple-line"></div>
     <p class="section-sub">Del trompo de madera al Fortnite. Cada generación tuvo su magia. Lo que no cambió fue la necesidad de un cuerpo sano para vivirla al máximo. ¿Cuál es la tuya?</p>
 
+    <!-- Banner generacional de alta resolución -->
+    <div style="width:100%;border-radius:20px;overflow:hidden;margin:36px 0;box-shadow:0 0 60px rgba(124,58,237,0.25);">
+      <img src="https://i.ibb.co/8gV4Hhhn/Whats-App-Image-2026-05-01-at-00-52-36.jpg"
+           alt="Evolución Generacional – Immunotec Wimms"
+           style="width:100%;height:auto;display:block;">
+    </div>
+
     <div class="gen-table-wrap fade-up">
       <table class="gen-table">
         <thead>
@@ -609,12 +614,48 @@ footer span{color:var(--wimms2);}
       </table>
     </div>
 
-    <div class="gen-reflection fade-up">
-      <h3>🔍 La Reflexión que Todo Papá Necesita Leer</h3>
-      <p><strong style="color:#fff;">Del trompo al Fortnite, algo se perdió en el camino:</strong> Los niños del siglo XXI viven con más estímulos que cualquier generación anterior, pero también con más deficiencias nutricionales, más sedentarismo digital y más estrés oxidativo desde edades tempranas.</p>
-      <p><span class="gen-highlight">La paradoja de 2026:</span> Tenemos el mayor acceso a información sobre salud de la historia, y sin embargo, el 67% de los niños mexicanos tiene déficit de al menos un micronutriente crítico. ¿Por qué? Porque la comida ultra-procesada colonizó cada generación con mayor velocidad. Lo que tu abuelo comía en 1960 tenía 3 veces más nutrientes reales que lo que hoy sale de una caja colorida con caricaturas.</p>
-      <p><strong style="color:#fff;">El niño de la Generación Alfa necesita ciencia, no solo vitaminas genéricas.</strong> Necesita <span class="gen-highlight">Glutatión elevado, DHA para su cerebro en formación, Vitamina D3 para su sistema inmune</span>, y la tranquilidad de que lo que toma tiene <span class="gen-highlight">Certificación FDA</span>. Eso es exactamente lo que Wimms de Immunotec le da todos los días.</p>
-      <p style="text-align:center;margin-top:20px;">
+    <!-- HISTORIA: EVOLUCIÓN NUTRICIONAL POR ERA -->
+    <div class="gen-reflection fade-up" style="margin-top:36px;">
+      <h3>🧬 La Historia que Nadie te Contó: La Evolución de la Niñez y la Nutrición</h3>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:28px 0;">
+        <div style="background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.25);border-radius:14px;padding:20px;">
+          <div style="font-size:1.8rem;margin-bottom:8px;">🌿</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:800;color:#06b6d4;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Las Generaciones Naturales<br>1910 – 1950</div>
+          <p style="color:var(--mist);font-size:0.87rem;line-height:1.7;">Niños de "aire libre". Su nutrición era <strong style="color:#fff;">orgánica por defecto</strong>, pero carecían de medicina preventiva avanzada. Su fortaleza venía de la comida real, aunque la esperanza de vida era limitada por factores ambientales.</p>
+        </div>
+        <div style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.25);border-radius:14px;padding:20px;">
+          <div style="font-size:1.8rem;margin-bottom:8px;">🏭</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:800;color:#f97316;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">El Auge Industrial<br>1960 – 1980</div>
+          <p style="color:var(--mist);font-size:0.87rem;line-height:1.7;">Aparece la comida procesada. La TV reemplaza el juego físico. <strong style="color:#fff;">Aquí empezó el declive</strong> de la densidad nutricional en favor de la comodidad. La era del "fast food" y el azúcar como protagonista.</p>
+        </div>
+        <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:14px;padding:20px;">
+          <div style="font-size:1.8rem;margin-bottom:8px;">💻</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:800;color:#10b981;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">La Era de la Información<br>1990 – 2010</div>
+          <p style="color:var(--mist);font-size:0.87rem;line-height:1.7;">Los Millennials crecieron con internet y los primeros refrescos masivos, pero también con los primeros estudios sobre <strong style="color:#fff;">estrés oxidativo</strong> y sus efectos en el desarrollo infantil.</p>
+        </div>
+        <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);border-radius:14px;padding:20px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-10px;right:-10px;font-size:4rem;opacity:0.07;">🚀</div>
+          <div style="font-size:1.8rem;margin-bottom:8px;">🧬</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--wimms2);font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Generación Alfa · El Futuro<br>2020 – 2026+</div>
+          <p style="color:var(--mist);font-size:0.87rem;line-height:1.7;">Hoy, un niño que consume biotecnología como <strong style="color:#fff;">Wimms de Immunotec</strong> tiene una <strong style="color:var(--wimms2);">ventaja epigenética real</strong>. Estamos diseñando cuerpos capaces de regenerarse más rápido de lo que se oxidan.</p>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(249,115,22,0.15));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:24px;margin-top:8px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:10px;">🤯</div>
+        <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1rem,2vw,1.2rem);color:#fff;margin-bottom:10px;">¿Sabías que…?</p>
+        <p style="color:var(--mist);font-size:0.97rem;line-height:1.75;">Los estudios actuales de <span class="gen-highlight">Biohacking</span> sugieren que la primera persona que vivirá <span class="gen-highlight">150 años</span> ya nació. La diferencia será <strong style="color:#fff;">qué combustible le dio a su cuerpo desde los primeros años de vida.</strong> Ese combustible tiene nombre: <span class="gen-highlight">Wimms.</span></p>
+      </div>
+
+      <div style="margin-top:28px;">
+        <h3 style="margin-bottom:16px;">🔍 La Reflexión que Todo Papá Necesita Leer</h3>
+        <p><strong style="color:#fff;">Del trompo al Fortnite, algo se perdió en el camino:</strong> Los niños del siglo XXI viven con más estímulos que cualquier generación anterior, pero también con más deficiencias nutricionales, más sedentarismo digital y más estrés oxidativo desde edades tempranas.</p>
+        <p style="margin-top:12px;"><span class="gen-highlight">La paradoja de 2026:</span> Tenemos el mayor acceso a información sobre salud de la historia, y sin embargo, el 67% de los niños mexicanos tiene déficit de al menos un micronutriente crítico. ¿Por qué? Porque la comida ultra-procesada colonizó cada generación con mayor velocidad. Lo que tu abuelo comía en 1960 tenía <strong style="color:#fff;">3 veces más nutrientes reales</strong> que lo que hoy sale de una caja colorida con caricaturas.</p>
+        <p style="margin-top:12px;"><strong style="color:#fff;">El niño de la Generación Alfa necesita ciencia, no solo vitaminas genéricas.</strong> Necesita <span class="gen-highlight">Glutatión elevado, DHA para su cerebro en formación, Vitamina D3 para su sistema inmune</span>, y la tranquilidad de que lo que toma tiene <span class="gen-highlight">Certificación FDA</span>. Eso es exactamente lo que Wimms le da todos los días.</p>
+      </div>
+
+      <p style="text-align:center;margin-top:28px;">
         <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20me%20interesa%20saber%20c%C3%B3mo%20Wimms%20puede%20ayudar%20a%20mi%20hijo"
            style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));color:#fff;font-size:1rem;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(124,58,237,0.4);font-family:'Nunito',sans-serif;" target="_blank">
           🧬 Quiero el mejor inicio para mi hijo
@@ -788,11 +829,7 @@ footer span{color:var(--wimms2);}
     </div>
     <div class="presenter-magnetic">
       <div class="presenter-img-side">
-        <!-- Placeholder: reemplaza con foto real de Alexa Torres -->
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;padding:30px;">
-          <div style="width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));display:flex;align-items:center;justify-content:center;font-size:4rem;box-shadow:0 0 40px rgba(168,85,247,0.5);">🌟</div>
-          <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;text-align:center;max-width:200px;">Sube aquí tu foto de perfil de Alexa Torres para personalizar esta sección</p>
-        </div>
+        <img src="https://i.ibb.co/pjby1nV3/Whats-App-Image-2026-04-10-at-01-58-26.jpg" alt="Alexa Torres – Consultora Immunotec" loading="eager">
       </div>
       <div class="presenter-info">
         <div class="presenter-badge2">✦ ¡Wimms · Día del Niño 2026!</div>
