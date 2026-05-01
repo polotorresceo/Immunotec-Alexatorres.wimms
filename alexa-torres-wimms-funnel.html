@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Feliz Día del Niño! Wimms · Alexa Torres · Immunotec</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#020b1a;--navy2:#041228;
+  --blue:#0a4dff;--blue2:#0635cc;
+  --cyan:#00d4ff;--teal:#00ffcc;
+  --gold:#c8922a;--gold2:#e8b84b;--gold3:#f5d98a;
+  --white:#ffffff;--mist:#a8c4d8;--verde:#00c47a;
+  --wimms1:#7c3aed;--wimms2:#a855f7;--wimms3:#f97316;
+  --wimms4:#06b6d4;--wimms5:#10b981;
+  --kids-red:#ef4444;--kids-blue:#3b82f6;--kids-yellow:#fbbf24;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;position:relative;}
+
+/* ── DNA CANVAS ── */
+#dna-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.22;}
+
+/* ── NAVBAR ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 32px;
+  background:rgba(2,11,26,0.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(124,58,237,0.25);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{height:42px;filter:brightness(1.4) drop-shadow(0 0 10px rgba(124,58,237,0.4));}
+.nav-store{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--wimms2);opacity:0.7;font-weight:500;display:none;}
+@media(min-width:600px){.nav-store{display:block;}}
+.nav-wa{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,#25d366,#1aad52);
+  color:#fff;font-size:0.82rem;font-weight:700;
+  padding:9px 20px;border-radius:40px;text-decoration:none;
+  box-shadow:0 4px 16px rgba(37,211,102,0.3);transition:transform .2s;white-space:nowrap;
+}
+.nav-wa:hover{transform:translateY(-2px);}
+.nav-wa svg{width:16px;height:16px;fill:#fff;flex-shrink:0;}
+.nav-wa-txt{display:none;}
+@media(min-width:520px){.nav-wa-txt{display:inline;}}
+@media(max-width:480px){.navbar{padding:10px 14px;}.nav-logo img{height:28px;}}
+
+/* ── FLOAT WA ── */
+.float-wa{
+  position:fixed;bottom:24px;right:24px;z-index:8999;
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#1aad52);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 28px rgba(37,211,102,0.5);text-decoration:none;
+  animation:wa-pulse 2.5s ease-in-out infinite;transition:transform .2s;
+}
+.float-wa:hover{transform:scale(1.1);}
+.float-wa svg{width:28px;height:28px;fill:#fff;}
+@keyframes wa-pulse{0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.5);}50%{box-shadow:0 8px 40px rgba(37,211,102,0.8);}}
+
+/* ── BANNER WIMMS ── */
+.banner-wimms{width:100%;display:block;line-height:0;position:relative;z-index:1;padding-top:68px;}
+.banner-wimms img{width:100%;height:auto;display:block;border-bottom:3px solid rgba(124,58,237,0.4);}
+@media(max-width:480px){.banner-wimms{padding-top:52px;}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:92vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 20px 80px;z-index:1;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(124,58,237,0.2) 0%,transparent 70%);
+  pointer-events:none;
+}
+/* Floating emoji kids decorations */
+.hero-float{position:absolute;font-size:2.2rem;animation:float-random 6s ease-in-out infinite;pointer-events:none;z-index:0;opacity:0.55;}
+.hero-float:nth-child(1){top:12%;left:8%;animation-delay:0s;}
+.hero-float:nth-child(2){top:18%;right:9%;animation-delay:1.2s;}
+.hero-float:nth-child(3){top:65%;left:5%;animation-delay:2.4s;}
+.hero-float:nth-child(4){top:60%;right:6%;animation-delay:0.8s;}
+.hero-float:nth-child(5){top:38%;left:3%;animation-delay:3s;}
+.hero-float:nth-child(6){top:40%;right:3%;animation-delay:1.8s;}
+@keyframes float-random{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-18px) rotate(5deg);}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--wimms1),var(--wimms2));
+  padding:8px 22px;border-radius:50px;
+  font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;
+  color:#fff;font-weight:800;margin-bottom:28px;
+  animation:fade-in-down 1s ease both,badge-pulse-purple 2.5s ease-in-out 1s infinite;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#fff;opacity:0.8;animation:dot-blink 1.5s ease-in-out infinite;}
+@keyframes badge-pulse-purple{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,0.6);}50%{box-shadow:0 0 0 16px rgba(124,58,237,0);}}
+@keyframes dot-blink{0%,100%{opacity:0.8;}50%{opacity:0.2;}}
+@keyframes fade-in-down{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade-in-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+.hero h1{
+  font-family:'Nunito',sans-serif;
+  font-size:clamp(2.2rem,5.5vw,4.8rem);font-weight:900;line-height:1.1;
+  max-width:860px;margin-bottom:22px;
+  background:linear-gradient(135deg,#f97316 0%,#fbbf24 30%,#a855f7 60%,#06b6d4 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fade-in-up 1s ease 0.2s both;position:relative;z-index:1;
+}
+.hero-sub{
+  font-size:clamp(0.95rem,2.2vw,1.15rem);color:var(--mist);font-weight:300;
+  max-width:640px;line-height:1.75;margin-bottom:40px;
+  animation:fade-in-up 1s ease 0.4s both;position:relative;z-index:1;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25d366,#1aad52);
+  color:#fff;font-size:1.05rem;font-weight:700;
+  padding:17px 38px;border-radius:60px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(37,211,102,0.4);
+  transition:transform .2s,box-shadow .2s;animation:fade-in-up 1s ease 0.6s both;
+  position:relative;z-index:1;
+}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(37,211,102,0.55);}
+.hero-cta svg{width:22px;height:22px;fill:#fff;}
+.scroll-hint{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  color:rgba(168,196,216,0.35);font-size:0.7rem;letter-spacing:3px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1;
+}
+.scroll-hint::after{
+  content:'';width:1px;height:28px;
+  background:linear-gradient(rgba(124,58,237,0.4),transparent);
+  animation:scroll-ln 1.8s ease-in-out infinite;
+}
+@keyframes scroll-ln{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* ── DISCOUNT PROMO BANNER ── */
+.promo-strip{
+  background:linear-gradient(135deg,var(--wimms1),var(--wimms3));
+  padding:20px;text-align:center;position:relative;z-index:1;
+  overflow:hidden;
+}
+.promo-strip::before{
+  content:'🎉 ';font-size:1.5rem;
+}
+.promo-strip-text{font-family:'Nunito',sans-serif;font-size:clamp(1rem,2.5vw,1.4rem);font-weight:900;color:#fff;letter-spacing:1px;}
+.promo-strip-text span{color:#fbbf24;font-size:1.2em;}
+.promo-strip::after{content:' 🎉';font-size:1.5rem;}
+
+/* ── SECTION COMMONS ── */
+section{position:relative;z-index:1;}
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+.section-label{display:block;font-size:0.7rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--wimms2);font-weight:600;margin-bottom:10px;}
+.section-title{font-family:'Nunito',sans-serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.15;margin-bottom:14px;}
+.section-sub{color:var(--mist);font-size:1rem;line-height:1.75;max-width:600px;}
+.purple-line{width:52px;height:3px;margin:14px 0 32px;background:linear-gradient(90deg,var(--wimms2),transparent);border-radius:2px;}
+
+/* ── WIMMS PRODUCT HERO ── */
+.wimms-hero{padding:90px 20px;background:linear-gradient(180deg,var(--navy) 0%,rgba(124,58,237,0.08) 50%,var(--navy2) 100%);}
+.wimms-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px;}
+@media(max-width:700px){.wimms-grid{grid-template-columns:1fr;gap:32px;}}
+
+.wimms-product-card{
+  background:linear-gradient(160deg,rgba(124,58,237,0.12),var(--navy2));
+  border:2px solid rgba(124,58,237,0.4);border-radius:28px;padding:36px;
+  position:relative;overflow:hidden;text-align:center;
+  box-shadow:0 4px 60px rgba(124,58,237,0.2);
+}
+.wimms-product-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.1),transparent 60%);
+}
+.wimms-img-wrap{
+  width:240px;height:240px;margin:0 auto 24px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle,rgba(124,58,237,0.15),transparent);
+  border:3px solid rgba(168,85,247,0.3);
+  animation:wimms-glow 3s ease-in-out infinite;
+}
+@keyframes wimms-glow{0%,100%{box-shadow:0 0 20px rgba(124,58,237,0.3);}50%{box-shadow:0 0 50px rgba(168,85,247,0.7);}}
+.wimms-img-wrap img{width:100%;height:100%;object-fit:contain;padding:14px;}
+.wimms-badge-promo{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#ef4444,#f97316);
+  color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;
+  padding:10px 28px;border-radius:50px;margin-bottom:16px;
+  box-shadow:0 4px 20px rgba(239,68,68,0.4);
+  animation:badge-pulse-purple 2s ease-in-out infinite;
+}
+
+.wimms-info h3{font-family:'Nunito',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--wimms2),var(--wimms3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wimms-info p{color:var(--mist);font-size:0.97rem;line-height:1.8;margin-bottom:20px;}
+.wimms-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;}
+.wimms-features li{display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#b0c8e0;line-height:1.5;}
+.wimms-features li .feat-icon{font-size:1.2rem;flex-shrink:0;}
+.cert-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.cert-chip{background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.4);border-radius:6px;padding:4px 12px;font-size:0.7rem;font-weight:700;letter-spacing:1px;color:var(--wimms2);}
+
+/* ── PAIN SECTION ── */
+.pain-section{padding:90px 20px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px;}
+@media(max-width:700px){.pain-grid{grid-template-columns:1fr;gap:28px;}}
+.pain-visual{
+  background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.2);
+  border-radius:22px;padding:28px 20px;position:relative;overflow:hidden;
+}
+.pain-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.07),transparent 60%);}
+.pain-header{text-align:center;margin-bottom:20px;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(168,85,247,0.6);font-family:'Nunito',sans-serif;font-weight:700;}
+.pain-dots{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pain-dot{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.2);
+  border-radius:8px;padding:9px 11px;
+  font-size:0.8rem;color:#b0c8e0;font-weight:500;
+  cursor:pointer;user-select:none;
+  transition:background .25s,border-color .25s,color .25s,box-shadow .25s;
+}
+.pain-dot:hover{background:rgba(249,115,22,0.12);border-color:rgba(249,115,22,0.5);color:#fbbf24;}
+.pain-dot.active{background:rgba(249,115,22,0.2)!important;border-color:var(--wimms3)!important;color:#fbbf24!important;box-shadow:0 0 12px rgba(249,115,22,0.3)!important;}
+.pain-dot.active .dot-node{background:var(--wimms3)!important;box-shadow:0 0 8px var(--wimms3)!important;}
+.pain-dot .dot-node{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--wimms1);box-shadow:0 0 6px var(--wimms1);transition:background .25s,box-shadow .25s;}
+.pain-text h3{font-family:'Nunito',sans-serif;font-size:1.7rem;font-weight:900;margin-bottom:14px;color:var(--white);}
+.pain-text p{color:var(--mist);line-height:1.8;margin-bottom:16px;font-size:0.95rem;}
+.pain-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.pain-list li{display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:#b0c8e0;line-height:1.5;}
+.pain-list li::before{content:'✓';color:var(--wimms5);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+/* ── GENERATIONAL TABLE ── */
+.gen-section{padding:90px 20px;background:radial-gradient(ellipse at 50% 50%,rgba(124,58,237,0.1) 0%,var(--navy) 70%);}
+.gen-table-wrap{overflow-x:auto;margin-top:40px;border-radius:20px;border:1px solid rgba(124,58,237,0.25);box-shadow:0 0 60px rgba(124,58,237,0.1);}
+.gen-table{width:100%;border-collapse:collapse;background:rgba(4,18,40,0.97);min-width:700px;}
+.gen-table thead tr{background:linear-gradient(135deg,var(--wimms1),var(--wimms2));}
+.gen-table th{padding:16px 14px;text-align:left;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;color:#fff;}
+.gen-table td{padding:16px 14px;border-bottom:1px solid rgba(124,58,237,0.12);color:#b0c8e0;font-size:0.88rem;line-height:1.6;vertical-align:top;}
+.gen-table tbody tr:last-child td{border-bottom:none;}
+.gen-table tbody tr:nth-child(even){background:rgba(124,58,237,0.04);}
+.gen-table tbody tr:hover{background:rgba(124,58,237,0.08);transition:background .2s;}
+.gen-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;font-family:'Nunito',sans-serif;}
+.gen-b1{background:rgba(6,182,212,0.15);color:#06b6d4;border:1px solid rgba(6,182,212,0.3);}
+.gen-b2{background:rgba(249,115,22,0.15);color:#f97316;border:1px solid rgba(249,115,22,0.3);}
+.gen-b3{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);}
+.gen-b4{background:rgba(168,85,247,0.15);color:#a855f7;border:1px solid rgba(168,85,247,0.3);}
+
+.gen-reflection{
+  margin-top:40px;background:linear-gradient(160deg,rgba(124,58,237,0.12),rgba(4,18,40,0.95));
+  border:1px solid rgba(124,58,237,0.3);border-radius:22px;padding:36px;position:relative;overflow:hidden;
+}
+.gen-reflection::before{content:'💡';position:absolute;top:-10px;right:20px;font-size:5rem;opacity:0.06;}
+.gen-reflection h3{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:900;margin-bottom:16px;color:var(--wimms2);}
+.gen-reflection p{color:var(--mist);line-height:1.8;font-size:0.95rem;margin-bottom:12px;}
+.gen-highlight{color:#fbbf24;font-weight:700;}
+
+/* ── FIVE PILLARS ── */
+.pillars-section{padding:90px 20px;background:linear-gradient(180deg,var(--navy2) 0%,var(--navy) 100%);}
+.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px;}
+@media(max-width:900px){.pillars-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.pillars-grid{grid-template-columns:1fr 1fr;}}
+.pillar-card{
+  background:linear-gradient(160deg,rgba(4,18,40,0.97),rgba(2,11,26,0.97));
+  border:1px solid rgba(124,58,237,0.25);border-radius:18px;
+  padding:24px 16px;text-align:center;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+  position:relative;overflow:hidden;
+}
+.pillar-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(124,58,237,0.25);border-color:rgba(168,85,247,0.5);}
+.pillar-icon{font-size:2.4rem;margin-bottom:12px;display:block;}
+.pillar-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;margin-bottom:8px;}
+.pillar-desc{font-size:0.78rem;color:#7090b0;line-height:1.5;}
+.pillar-card:nth-child(5){grid-column:span 1;}
+@media(max-width:600px){.pillar-card:nth-child(5){grid-column:span 2;}}
+
+/* ── SCIENCE ── */
+.science-section{padding:80px 20px;background:radial-gradient(ellipse at 50% 50%,rgba(124,58,237,0.1) 0%,var(--navy) 70%);}
+.science-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;}
+@media(max-width:680px){.science-inner{grid-template-columns:1fr;gap:32px;}}
+.logo-orbit{position:relative;display:flex;align-items:center;justify-content:center;min-height:280px;}
+.orbit-ring{position:absolute;border-radius:50%;border:1px solid rgba(168,85,247,0.15);animation:orbit-spin 20s linear infinite;}
+.orbit-ring:nth-child(1){width:240px;height:240px;}
+.orbit-ring:nth-child(2){width:300px;height:300px;animation-duration:28s;animation-direction:reverse;}
+.orbit-ring:nth-child(3){width:360px;height:360px;animation-duration:36s;}
+@keyframes orbit-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.orbit-dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--wimms2);box-shadow:0 0 10px var(--wimms2);top:0;left:50%;transform:translateX(-50%);}
+.orbit-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.2) 0%,transparent 70%);animation:glow-pulse 3s ease-in-out infinite;}
+@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:0.6;}50%{transform:scale(1.2);opacity:1;}}
+.orbit-logo{width:180px;position:relative;z-index:2;filter:brightness(1.5) drop-shadow(0 0 24px rgba(168,85,247,0.5));animation:logo-float 4s ease-in-out infinite;}
+@keyframes logo-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.science-text h2{font-family:'Nunito',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:14px;background:linear-gradient(135deg,#fff 40%,var(--wimms2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.science-text p{color:var(--mist);font-size:0.94rem;line-height:1.8;margin-bottom:16px;}
+.avales{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.avales li{display:flex;align-items:center;gap:10px;font-size:0.88rem;color:#b0c8e0;}
+.aval-chip{background:rgba(124,58,237,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:6px;padding:3px 10px;font-size:0.7rem;font-weight:700;letter-spacing:1px;color:var(--wimms2);flex-shrink:0;}
+.tienda-link{display:inline-flex;align-items:center;gap:7px;color:rgba(168,196,216,0.5);font-size:0.8rem;letter-spacing:1px;text-decoration:none;transition:color .2s;}
+.tienda-link:hover{color:var(--wimms2);}
+.tienda-link svg{width:14px;height:14px;fill:currentColor;}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{padding:90px 20px;background:linear-gradient(180deg,var(--navy2) 0%,var(--navy) 100%);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:50px;}
+.testi-card{background:linear-gradient(160deg,#061428,#030d1e);border:1px solid rgba(124,58,237,0.2);border-radius:18px;padding:26px 22px;transition:transform .25s,border-color .25s;position:relative;overflow:hidden;}
+.testi-card::before{content:'"';position:absolute;top:-8px;right:16px;font-size:7rem;color:rgba(124,58,237,0.07);font-family:'Nunito',sans-serif;line-height:1;pointer-events:none;}
+.testi-card:hover{transform:translateY(-4px);border-color:rgba(168,85,247,0.45);}
+.stars{color:var(--wimms3);font-size:0.8rem;letter-spacing:2px;margin-bottom:10px;}
+.testi-product{display:inline-block;font-size:0.67rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:9px;letter-spacing:1px;}
+.tp-wimms{background:rgba(124,58,237,0.18);color:var(--wimms2);border:1px solid rgba(124,58,237,0.3);}
+.testi-text{font-size:0.9rem;line-height:1.7;color:#b0c8d8;margin-bottom:16px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;}
+.testi-name{font-weight:600;font-size:0.88rem;color:#dde8f0;}
+.testi-loc{font-size:0.75rem;color:#6040a0;margin-top:2px;}
+
+/* ── FORM ── */
+.form-section{padding:90px 20px;background:radial-gradient(ellipse at 50% 30%,rgba(124,58,237,0.12) 0%,var(--navy2) 70%);}
+.form-box{max-width:720px;margin:48px auto 0;background:linear-gradient(160deg,rgba(4,18,40,0.95),rgba(2,11,26,0.95));border:1px solid rgba(168,85,247,0.25);border-radius:28px;padding:48px 44px;box-shadow:0 0 80px rgba(124,58,237,0.15),inset 0 1px 0 rgba(255,255,255,0.04);position:relative;overflow:hidden;}
+.form-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.06),transparent 60%);pointer-events:none;}
+.form-box h3{font-family:'Nunito',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;margin-bottom:8px;text-align:center;background:linear-gradient(135deg,#fff 40%,var(--wimms2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.form-box p.form-sub{text-align:center;color:var(--mist);font-size:0.9rem;margin-bottom:32px;line-height:1.6;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;}
+.form-group label{font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--wimms2);font-weight:600;}
+.form-group input,.form-group select{background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.25);border-radius:12px;padding:14px 18px;font-size:0.95rem;color:var(--white);font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;width:100%;}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a855f7' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px;cursor:pointer;}
+.form-group select option{background:#041228;color:#fff;}
+.form-group input:focus,.form-group select:focus{border-color:var(--wimms2);box-shadow:0 0 0 3px rgba(168,85,247,0.15);}
+.form-group input::placeholder{color:rgba(168,196,216,0.4);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:540px){.form-row{grid-template-columns:1fr;}}
+.form-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));color:#fff;font-size:1rem;font-weight:700;padding:18px 28px;border-radius:60px;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(124,58,237,0.4);transition:transform .2s,box-shadow .2s;margin-top:8px;font-family:'Nunito',sans-serif;}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(168,85,247,0.55);}
+.form-submit svg{width:20px;height:20px;fill:#fff;}
+.form-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.form-note{text-align:center;margin-top:16px;color:rgba(168,196,216,0.4);font-size:0.78rem;line-height:1.5;}
+.form-success{display:none;text-align:center;padding:40px 20px;}
+.form-success .check-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 40px rgba(124,58,237,0.5);animation:pop-in .5s ease both;}
+@keyframes pop-in{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+.form-success .check-icon svg{width:36px;height:36px;fill:#fff;}
+.form-success h4{font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;margin-bottom:10px;}
+.form-success p{color:var(--mist);font-size:0.95rem;line-height:1.7;margin-bottom:24px;}
+.form-success .wa-confirm{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25d366,#1aad52);color:#fff;font-size:0.95rem;font-weight:700;padding:14px 28px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,0.4);}
+
+/* ── CTA ── */
+.cta-section{padding:90px 20px;background:radial-gradient(ellipse at center,rgba(124,58,237,0.14) 0%,var(--navy) 70%);text-align:center;border-top:1px solid rgba(124,58,237,0.12);}
+.cta-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:44px 0;}
+.cta-reason{background:rgba(4,18,40,0.9);border:1px solid rgba(124,58,237,0.2);border-radius:16px;padding:20px 22px;max-width:210px;text-align:center;font-size:0.87rem;color:var(--mist);line-height:1.5;}
+.cta-reason .r-icon{font-size:1.8rem;display:block;margin-bottom:9px;}
+.cta-reason strong{color:#fff;display:block;margin-bottom:4px;font-size:0.9rem;}
+.cta-wa-main{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#25d366,#1aad52);color:#fff;font-size:1.15rem;font-weight:700;padding:20px 48px;border-radius:70px;text-decoration:none;box-shadow:0 8px 40px rgba(37,211,102,0.45);transition:transform .2s,box-shadow .2s;margin-bottom:20px;font-family:'Nunito',sans-serif;}
+.cta-wa-main:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 16px 52px rgba(37,211,102,0.6);}
+.cta-wa-main svg{width:26px;height:26px;fill:#fff;}
+.cta-sub{color:rgba(168,196,216,0.5);font-size:0.85rem;}
+.cta-sub strong{color:rgba(168,196,216,0.7);}
+
+/* ── PRESENTER — ALEXA ── */
+.presenter-section{padding:90px 20px;background:linear-gradient(180deg,var(--navy2) 0%,var(--navy) 100%);border-top:1px solid rgba(124,58,237,0.12);}
+.presenter-magnetic{max-width:920px;margin:0 auto;background:linear-gradient(135deg,rgba(4,18,40,0.97),rgba(2,11,26,0.97));border:1px solid rgba(168,85,247,0.3);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:360px 1fr;box-shadow:0 0 80px rgba(124,58,237,0.15),0 0 0 1px rgba(168,85,247,0.08);position:relative;}
+.presenter-magnetic::after{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0) 10%,rgba(168,85,247,0.9) 30%,#e0b0ff 50%,rgba(168,85,247,0.9) 70%,rgba(168,85,247,0) 90%,transparent 100%);box-shadow:0 0 18px 5px rgba(168,85,247,0.6),0 0 40px 10px rgba(168,85,247,0.2);z-index:10;top:0;pointer-events:none;animation:laser-scan 3.5s ease-in-out infinite;}
+@keyframes laser-scan{0%{top:0%;opacity:0;}5%{opacity:1;}48%{top:100%;opacity:1;}52%{top:100%;opacity:0;}53%{top:0%;opacity:0;}100%{top:0%;opacity:0;}}
+.presenter-img-side{position:relative;overflow:hidden;height:480px;flex-shrink:0;background:linear-gradient(160deg,rgba(124,58,237,0.15),rgba(2,11,26,0.9));display:flex;align-items:center;justify-content:center;}
+.presenter-img-side img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;filter:brightness(1.1) drop-shadow(0 0 40px rgba(168,85,247,0.4));transition:transform .5s ease;}
+.presenter-magnetic:hover .presenter-img-side img{transform:scale(1.04);}
+.presenter-info{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:13px;position:relative;z-index:2;}
+.presenter-badge2{display:inline-flex;align-items:center;gap:7px;background:rgba(124,58,237,0.15);border:1px solid rgba(168,85,247,0.35);border-radius:30px;padding:5px 15px;font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--wimms2);width:fit-content;font-family:'Nunito',sans-serif;}
+.presenter-name2{font-family:'Nunito',sans-serif;font-size:clamp(1.9rem,2.8vw,2.4rem);font-weight:900;line-height:1.1;background:linear-gradient(135deg,#fff 35%,var(--wimms2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.presenter-title2{color:rgba(168,196,216,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.presenter-div{width:44px;height:2px;background:linear-gradient(90deg,var(--wimms2),transparent);}
+.presenter-desc2{color:var(--mist);font-size:0.88rem;line-height:1.75;}
+.presenter-stats{display:flex;gap:20px;flex-wrap:wrap;}
+.p-stat strong{font-family:'Nunito',sans-serif;font-size:1.5rem;color:var(--wimms2);display:block;}
+.p-stat span{font-size:0.7rem;color:#5040a0;text-transform:uppercase;letter-spacing:1px;}
+.presenter-flags2{font-size:1.5rem;letter-spacing:8px;display:flex;align-items:center;gap:6px;}
+.presenter-contact{font-size:0.78rem;color:rgba(168,196,216,0.5);line-height:1.9;}
+.presenter-wa2{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#25d366,#1aad52);color:#fff;font-size:0.95rem;font-weight:700;padding:13px 24px;border-radius:50px;text-decoration:none;box-shadow:0 5px 22px rgba(37,211,102,0.35);transition:transform .2s,box-shadow .2s;width:fit-content;font-family:'Nunito',sans-serif;}
+.presenter-wa2:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.5);}
+.presenter-wa2 svg{width:20px;height:20px;fill:#fff;flex-shrink:0;}
+.presenter-store{display:inline-flex;align-items:center;gap:7px;color:rgba(168,196,216,0.4);font-size:0.78rem;font-weight:600;letter-spacing:1px;text-decoration:none;transition:color .2s;}
+.presenter-store:hover{color:var(--wimms2);}
+.presenter-store svg{width:13px;height:13px;fill:currentColor;}
+@media(max-width:700px){.presenter-magnetic{grid-template-columns:1fr;}.presenter-img-side{height:300px;}.presenter-info{padding:26px 20px 32px;}.presenter-name2{font-size:2rem;}.presenter-wa2,.presenter-store{width:100%;justify-content:center;}}
+
+/* ── FOOTER ── */
+footer{background:#010a16;text-align:center;padding:28px 20px;border-top:1px solid rgba(124,58,237,0.1);color:rgba(168,196,216,0.25);font-size:0.75rem;line-height:1.6;}
+footer span{color:var(--wimms2);}
+
+/* ── GLOBAL RESPONSIVE ── */
+@media(max-width:768px){
+  section{padding:60px 16px!important;}
+  .hero{padding:90px 16px 70px!important;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .cta-cards{gap:10px;}
+  .cta-reason{max-width:46%;min-width:130px;padding:14px 12px;font-size:0.8rem;}
+  .cta-wa-main{font-size:1rem;padding:17px 28px;}
+  .form-box{padding:30px 18px;}
+  .science-inner{grid-template-columns:1fr;}
+  .logo-orbit{min-height:220px;}
+  .wimms-grid{grid-template-columns:1fr;}
+  .pillars-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:420px){
+  .cta-reason{max-width:100%;}
+  .cta-wa-main{width:100%;justify-content:center;}
+  .form-row{grid-template-columns:1fr;}
+}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* ── CONFETTI STAR ACCENTS ── */
+.star-accent{display:inline-block;animation:star-spin 4s linear infinite;}
+@keyframes star-spin{0%{transform:rotate(0deg) scale(1);}50%{transform:rotate(180deg) scale(1.2);}100%{transform:rotate(360deg) scale(1);}}
+</style>
+</head>
+<body>
+
+<canvas id="dna-canvas"></canvas>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20vi%20tu%20p%C3%A1gina%20y%20me%20interesan%20las%20g%C3%B3mitas%20Wimms%20para%20mi%20peque%C3%B1o" class="float-wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="nav-logo" href="https://www.immunotec.com/es-MX" target="_blank" rel="noopener">
+    <img src="https://i.ibb.co/Z6G50SV0/Screenshot-2026-04-06-20-36-08-removebg-preview.png" alt="Immunotec">
+    <span class="nav-store">immunotec.com/es-MX</span>
+  </a>
+  <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20g%C3%B3mitas%20Wimms" class="nav-wa" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="nav-wa-txt">Contactar a Alexa</span>
+  </a>
+</nav>
+
+<!-- BANNER WIMMS DÍA DEL NIÑO -->
+<div class="banner-wimms" style="padding-top:68px;">
+  <img src="https://i.ibb.co/uploaded-wimms-placeholder/feliz-dia-nino-wimms.jpg"
+       onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#7c3aed,#a855f7,#f97316)';this.parentElement.style.minHeight='220px';this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;min-height:220px;text-align:center;padding:40px 20px;\'><div><p style=\'font-family:Nunito,sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;\'>🎉 ¡Feliz Día del Niño! 🎉</p><p style=\'font-size:1.2rem;color:rgba(255,255,255,0.85);margin-top:10px;font-family:Nunito,sans-serif;font-weight:700;\'>WIMMS · El mejor suplemento para niños ✨</p></div></div>'"
+       alt="¡Feliz Día del Niño! Wimms – El mejor suplemento para niños">
+</div>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <span class="promo-strip-text">¡Promo Especial Día del Niño! <span>25% DE DESCUENTO</span> en Wimms · Solo por tiempo limitado 🚀</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-float">🚀</span>
+  <span class="hero-float">⭐</span>
+  <span class="hero-float">🧬</span>
+  <span class="hero-float">🌟</span>
+  <span class="hero-float">🎯</span>
+  <span class="hero-float">💫</span>
+
+  <div class="hero-badge"><span class="hero-badge-dot"></span>Wimms · Immunotec · Día del Niño 2026</div>
+  <h1>El Suplemento Que Tu Hijo<br>Merece Desde el Primer Día</h1>
+  <p class="hero-sub">Gomitas Wimms de Immunotec: energía real, memoria activa y nutrición de vanguardia para el niño de hoy. Con certificación FDA y respaldo científico de clase mundial. Porque el futuro empieza en su bienestar.</p>
+  <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20g%C3%B3mitas%20Wimms%20para%20el%20D%C3%ADa%20del%20Ni%C3%B1o" class="hero-cta" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Quiero el 25% de Descuento — WhatsApp
+  </a>
+  <div class="scroll-hint">DESCUBRE MÁS</div>
+</section>
+
+<!-- WIMMS PRODUCT -->
+<section class="wimms-hero">
+  <div class="container">
+    <span class="section-label">Producto Estrella · Día del Niño</span>
+    <h2 class="section-title">Wimms: <span style="background:linear-gradient(135deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Pequeñas Gomitas,<br>Grandes Superpoderes</span></h2>
+    <div class="purple-line"></div>
+    <div class="wimms-grid fade-up">
+      <div class="wimms-product-card">
+        <div class="wimms-badge-promo">🎉 25% OFF · Día del Niño</div>
+        <div class="wimms-img-wrap">
+          <img src="https://i.ibb.co/placeholder-wimms/wimms-bottle.png"
+               onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:5rem;line-height:1;\'>🍬</div>'"
+               alt="Wimms Gomitas Immunotec">
+        </div>
+        <h3 style="font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;margin-bottom:8px;background:linear-gradient(135deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">WIMMS!</h3>
+        <p style="color:var(--mist);font-size:0.9rem;line-height:1.7;">El suplemento nutraceútico líder para niños — delicioso, efectivo y respaldado por Immunotec.</p>
+        <div class="cert-chips">
+          <span class="cert-chip">FDA</span>
+          <span class="cert-chip">Nutrasceútico</span>
+          <span class="cert-chip">Immunotec</span>
+        </div>
+        <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20quiero%20pedir%20Wimms%20con%20el%2025%25%20de%20descuento" target="_blank"
+           style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25d366,#1aad52);color:#fff;font-size:0.95rem;font-weight:700;padding:13px 28px;border-radius:50px;text-decoration:none;box-shadow:0 5px 20px rgba(37,211,102,0.4);font-family:'Nunito',sans-serif;width:100%;justify-content:center;margin-top:8px;">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir con Descuento — 52 221 428 2564
+        </a>
+      </div>
+      <div class="wimms-info">
+        <h3>¿Por Qué Wimms es la Mejor Decisión para Tu Hijo?</h3>
+        <p>En un mundo donde el suelo está agotado y los alimentos procesados dominan la dieta infantil, el cerebro y el cuerpo de tu hijo necesitan más de lo que puede obtener del plato. Wimms cubre esa brecha nutricional con biotecnología de vanguardia.</p>
+        <ul class="wimms-features">
+          <li><span class="feat-icon">🧠</span><div><strong style="color:#fff;">Potencia la Memoria</strong> — Nutre el desarrollo neuronal en etapa crítica de aprendizaje.</div></li>
+          <li><span class="feat-icon">⚡</span><div><strong style="color:#fff;">Energía Sostenida</strong> — Elimina el cansancio escolar y activa la vitalidad natural del niño.</div></li>
+          <li><span class="feat-icon">🛡️</span><div><strong style="color:#fff;">Inmunidad Poderosa</strong> — Precursores de Glutatión para defensas indestructibles.</div></li>
+          <li><span class="feat-icon">🌿</span><div><strong style="color:#fff;">Nutraceútico Premium</strong> — Ingredientes naturales sin colorantes artificiales peligrosos.</div></li>
+          <li><span class="feat-icon">✅</span><div><strong style="color:#fff;">Certificación FDA</strong> — El único suplemento para niños con este respaldo científico.</div></li>
+          <li><span class="feat-icon">😋</span><div><strong style="color:#fff;">¡Los Niños Lo Piden!</strong> — Sabor irresistible que hace la nutrición divertida.</div></li>
+        </ul>
+        <div class="cert-chips">
+          <span class="cert-chip">Omega-3 DHA</span>
+          <span class="cert-chip">Vitamina D3</span>
+          <span class="cert-chip">Zinc</span>
+          <span class="cert-chip">Biotina</span>
+          <span class="cert-chip">Sin Gluten</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-section">
+  <div class="container">
+    <span class="section-label">¿Te Identificas con Alguno de Estos?</span>
+    <h2 class="section-title">Tu hijo te habla.<br>Wimms escucha.</h2>
+    <div class="purple-line"></div>
+    <div class="pain-grid fade-up">
+      <div class="pain-visual">
+        <p class="pain-header">Señales de Alerta en el Desarrollo Infantil</p>
+        <div class="pain-dots">
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Se cansa rápido</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Le cuesta concentrarse</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Pocas defensas</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Come mal / selectivo</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Duerme intranquilo</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Memoria débil</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Se enferma seguido</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Humor irritable</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Bajo rendimiento</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Déficit de atención</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Alergias frecuentes</div>
+          <div class="pain-dot" onclick="toggleDot(this)"><span class="dot-node"></span>Anemia / Palidez</div>
+        </div>
+      </div>
+      <div class="pain-text">
+        <h3>¿Por qué tu hijo no tiene la energía que merece?</h3>
+        <p>La ciencia es clara: el suelo agrícola actual produce alimentos con hasta un <strong style="color:#fbbf24;">70% menos nutrientes</strong> que hace 50 años. Tu hijo come, pero no se nutre. Wimms cierra esa brecha con biotecnología que eleva el Glutatión infantil — el guardián celular que hace todo funcionar.</p>
+        <ul class="pain-list">
+          <li>El Glutatión infantil se agota por toxinas ambientales diarias</li>
+          <li>El Omega-3 DHA es crítico para el desarrollo neuronal hasta los 12 años</li>
+          <li>El 90% de los niños mexicanos tiene deficiencia de Vitamina D3</li>
+          <li>Wimms es el único gummy con precursores de Glutatión patentados</li>
+          <li>Certificado FDA · Nutrasceútico · Sin conservadores artificiales</li>
+          <li>Respaldado por Immunotec · 30 años de ciencia para toda la familia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GENERATIONAL TABLE + REFLECTION -->
+<section class="gen-section">
+  <div class="container">
+    <span class="section-label">Reflexión Generacional · Día del Niño</span>
+    <h2 class="section-title">¿En Qué Generación<br>Creció Tu Familia?</h2>
+    <div class="purple-line"></div>
+    <p class="section-sub">Del trompo de madera al Fortnite. Cada generación tuvo su magia. Lo que no cambió fue la necesidad de un cuerpo sano para vivirla al máximo. ¿Cuál es la tuya?</p>
+
+    <div class="gen-table-wrap fade-up">
+      <table class="gen-table">
+        <thead>
+          <tr>
+            <th>🧬 Generación</th>
+            <th>🎬 Top 3 Películas</th>
+            <th>🎵 Top 3 Canciones</th>
+            <th>⚽ Juegos / Deportes</th>
+            <th>📱 Telefonía</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gen-badge gen-b1">Baby Boomers<br>1940–1960</span></td>
+            <td>1. Casablanca<br>2. El Mago de Oz<br>3. Ben-Hur</td>
+            <td>1. "Blue Suede Shoes" (Elvis)<br>2. "La Bamba" (Ritchie Valens)<br>3. "Fly Me to the Moon" (Sinatra)</td>
+            <td>1. Béisbol callejero<br>2. Canicas de vidrio<br>3. Trompo de madera</td>
+            <td>Teléfono de disco fijo y casetas públicas de monedas.</td>
+          </tr>
+          <tr>
+            <td><span class="gen-badge gen-b2">Generación X<br>1970–1980</span></td>
+            <td>1. Star Wars<br>2. E.T. El Extraterrestre<br>3. Volver al Futuro</td>
+            <td>1. "Billie Jean" (M. Jackson)<br>2. "Bohemian Rhapsody" (Queen)<br>3. "Girls Just Want to Fun" (C. Lauper)</td>
+            <td>1. Fútbol (Era de Pelé/Maradona)<br>2. Escondidillas / Burro Bala<br>3. Primeros videojuegos (Pac-Man)</td>
+            <td>Teléfonos de pared con cables largos y los primeros "ladrillos" móviles.</td>
+          </tr>
+          <tr>
+            <td><span class="gen-badge gen-b3">Millennials<br>1990–2000</span></td>
+            <td>1. Titanic<br>2. El Rey León<br>3. Matrix</td>
+            <td>1. "Smells Like Teen Spirit" (Nirvana)<br>2. "...Baby One More Time" (Britney)<br>3. "Gasolina" (Daddy Yankee)</td>
+            <td>1. Fútbol rápido<br>2. Patines en línea / Skate<br>3. Pokémon (GameBoy)</td>
+            <td>El auge de los SMS, el Nokia 3310 y la llegada del primer iPhone.</td>
+          </tr>
+          <tr>
+            <td><span class="gen-badge gen-b4">Gen Z / Alfa<br>2010–2026</span></td>
+            <td>1. Avengers: Endgame<br>2. Frozen<br>3. Spider-Man: No Way Home</td>
+            <td>1. "Despacito" (Luis Fonsi)<br>2. "Blinding Lights" (The Weeknd)<br>3. "Flowers" (Miley Cyrus)</td>
+            <td>1. eSports (FIFA/Fortnite)<br>2. TikTok Dances / Parkour<br>3. Pádel / Crossfit</td>
+            <td>Smartphones 5G, Apple Watch y comunicación por comandos de voz e IA.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gen-reflection fade-up">
+      <h3>🔍 La Reflexión que Todo Papá Necesita Leer</h3>
+      <p><strong style="color:#fff;">Del trompo al Fortnite, algo se perdió en el camino:</strong> Los niños del siglo XXI viven con más estímulos que cualquier generación anterior, pero también con más deficiencias nutricionales, más sedentarismo digital y más estrés oxidativo desde edades tempranas.</p>
+      <p><span class="gen-highlight">La paradoja de 2026:</span> Tenemos el mayor acceso a información sobre salud de la historia, y sin embargo, el 67% de los niños mexicanos tiene déficit de al menos un micronutriente crítico. ¿Por qué? Porque la comida ultra-procesada colonizó cada generación con mayor velocidad. Lo que tu abuelo comía en 1960 tenía 3 veces más nutrientes reales que lo que hoy sale de una caja colorida con caricaturas.</p>
+      <p><strong style="color:#fff;">El niño de la Generación Alfa necesita ciencia, no solo vitaminas genéricas.</strong> Necesita <span class="gen-highlight">Glutatión elevado, DHA para su cerebro en formación, Vitamina D3 para su sistema inmune</span>, y la tranquilidad de que lo que toma tiene <span class="gen-highlight">Certificación FDA</span>. Eso es exactamente lo que Wimms de Immunotec le da todos los días.</p>
+      <p style="text-align:center;margin-top:20px;">
+        <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20me%20interesa%20saber%20c%C3%B3mo%20Wimms%20puede%20ayudar%20a%20mi%20hijo"
+           style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));color:#fff;font-size:1rem;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;box-shadow:0 6px 24px rgba(124,58,237,0.4);font-family:'Nunito',sans-serif;" target="_blank">
+          🧬 Quiero el mejor inicio para mi hijo
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 PILLARS -->
+<section class="pillars-section">
+  <div class="container">
+    <span class="section-label">Bienestar Infantil del Siglo XXI</span>
+    <h2 class="section-title" style="text-align:center;">Los 5 Pilares del Niño<br><span style="background:linear-gradient(135deg,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Que Alcanzará los 120 Años</span></h2>
+    <div class="purple-line" style="margin:14px auto 0;"></div>
+    <p class="section-sub" style="text-align:center;margin:16px auto 0;">Construye hoy los hábitos que lo llevarán a vivir con vitalidad, lucidez y fuerza hasta los 120. Wimms es el Pilar #5.</p>
+    <div class="pillars-grid fade-up">
+      <div class="pillar-card">
+        <span class="pillar-icon">😴</span>
+        <div class="pillar-name">Calidad de Sueño</div>
+        <div class="pillar-desc">La reparación neuronal profunda ocurre durante el sueño. Sin él, ningún suplemento llega al 100%.</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🏃</span>
+        <div class="pillar-name">Ejercicio Activo</div>
+        <div class="pillar-desc">El músculo es un órgano endocrino. Mínimo 60 min de movimiento físico al día activa el metabolismo para toda la vida.</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">💧</span>
+        <div class="pillar-name">Hidratación Real</div>
+        <div class="pillar-desc">Agua celular con electrolitos. El 75% de las células infantiles depende de hidratación correcta para funcionar.</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🚫</span>
+        <div class="pillar-name">Protocolo "Zero"</div>
+        <div class="pillar-desc">Cero azúcares refinados, cero colorantes artificiales, cero embutidos. La inflamación empieza en el plato.</div>
+      </div>
+      <div class="pillar-card" style="border-color:rgba(168,85,247,0.5);box-shadow:0 0 30px rgba(124,58,237,0.25);background:linear-gradient(160deg,rgba(124,58,237,0.12),var(--navy2));">
+        <span class="pillar-icon">🍬</span>
+        <div class="pillar-name" style="color:var(--wimms2);">Wimms · Suplementación Proactiva</div>
+        <div class="pillar-desc">La ciencia Immunotec en cada gummy: Glutatión, DHA, Vitamina D3 y más. El seguro de vida nutricional de tu hijo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="science-section">
+  <div class="container">
+    <div class="science-inner">
+      <div class="logo-orbit">
+        <div class="orbit-glow"></div>
+        <div class="orbit-ring"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring"><div class="orbit-dot"></div></div>
+        <img class="orbit-logo" src="https://i.ibb.co/Z6G50SV0/Screenshot-2026-04-06-20-36-08-removebg-preview.png" alt="Immunotec Logo" loading="lazy">
+      </div>
+      <div class="science-text">
+        <span class="section-label">Respaldo Científico Global</span>
+        <h2>30 años de ciencia<br>ahora para tus hijos</h2>
+        <div class="purple-line"></div>
+        <p>Immunotec es pionera mundial en investigación del Glutatión. Wimms trae esa misma ciencia de élite en un formato que los niños de 4 a 14 años amarán tomar cada mañana.</p>
+        <ul class="avales">
+          <li><span class="aval-chip">FDA</span>Clasificado GRAS — seguro para consumo infantil diario</li>
+          <li><span class="aval-chip">PDR</span>Registrado en Physicians Desk Reference</li>
+          <li><span class="aval-chip">Health Canada</span>Suplemento natural efectivo certificado</li>
+          <li><span class="aval-chip">40+ países</span>Presencia global desde 1996</li>
+        </ul>
+        <a href="https://www.immunotec.com/es-MX" target="_blank" rel="noopener" class="tienda-link">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          Visitar tienda oficial → immunotec.com/es-MX
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <span class="section-label">Historias Reales · Pequeños Guerreros</span>
+    <h2 class="section-title">Mamás y Papás que ya<br>eligieron lo mejor para sus hijos.</h2>
+    <div class="purple-line"></div>
+    <div class="testimonials-grid fade-up">
+      <div class="testi-card"><span class="testi-product tp-wimms">Wimms · Memoria</span><div class="stars">★★★★★</div><p class="testi-text">Mi hijo de 8 años era muy olvidadizo en la escuela. Con Wimms en solo 3 semanas su maestra me escribió para preguntarme qué había cambiado. Está participando más y se acuerda de todo.</p><div class="testi-author"><div class="testi-avatar">K</div><div><div class="testi-name">Karen M.</div><div class="testi-loc">Puebla, PUE</div></div></div></div>
+      <div class="testi-card"><span class="testi-product tp-wimms">Wimms · Energía</span><div class="stars">★★★★★</div><p class="testi-text">Mi niña se cansaba muchísimo en las clases de danza. Al mes con Wimms llega a casa y todavía quiere jugar. La energía que tiene ahora es increíble. Gracias Alexa por la recomendación.</p><div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Patricia V.</div><div class="testi-loc">CDMX</div></div></div></div>
+      <div class="testi-card"><span class="testi-product tp-wimms">Wimms · Inmunidad</span><div class="stars">★★★★★</div><p class="testi-text">Mi pequeño se enfermaba cada dos semanas — gripes, anginas, todo. Desde Wimms llevamos 4 meses sin una sola visita al doctor. Mi esposo no lo podía creer.</p><div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Rosa T.</div><div class="testi-loc">Monterrey, NL</div></div></div></div>
+      <div class="testi-card"><span class="testi-product tp-wimms">Wimms · Nutrición</span><div class="stars">★★★★★</div><p class="testi-text">Mi hijo tiene 11 años y era muy malo comiendo. Las gomitas Wimms las pide solito cada mañana. El pediatra revisó los ingredientes y los aprobó totalmente. Hermoso el producto.</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Ana G.</div><div class="testi-loc">Guadalajara, JAL</div></div></div></div>
+      <div class="testi-card"><span class="testi-product tp-wimms">Wimms · Desarrollo</span><div class="stars">★★★★★</div><p class="testi-text">Mi hija tiene Déficit de Atención. El neuropediatra me dijo que podíamos complementar con nutraceúticos. Con Wimms su concentración mejoró notablemente en semanas.</p><div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name">Laura S.</div><div class="testi-loc">Querétaro, QRO</div></div></div></div>
+      <div class="testi-card"><span class="testi-product tp-wimms">Wimms · General</span><div class="stars">★★★★★</div><p class="testi-text">Soy nutrióloga y busqué mucho antes de elegir Wimms para mis 3 hijos. La calidad de los ingredientes, la certificación FDA y los resultados hablan solos. Es el estándar de oro.</p><div class="testi-author"><div class="testi-avatar">C</div><div><div class="testi-name">Claudia N., Nutrióloga</div><div class="testi-loc">León, GTO</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <span class="section-label">Promo Especial · Sin Compromiso</span>
+      <h2 class="section-title">Recibe GRATIS la Guía<br>"Cómo Nutrir a un Niño del Siglo XXI"</h2>
+      <div class="purple-line" style="margin:14px auto 0;"></div>
+    </div>
+    <div class="form-box fade-up">
+      <h3>🎁 ¡Quiero la Guía + el 25% OFF!</h3>
+      <p class="form-sub">Déjanos tus datos y Alexa te enviará personalmente la guía completa más acceso a la promo del Día del Niño. Sin costo · Sin compromiso.</p>
+      <div id="lead-form">
+        <div class="form-row">
+          <div class="form-group"><label for="f-nombre">Nombre completo</label><input type="text" id="f-nombre" placeholder="Tu nombre" autocomplete="name"></div>
+          <div class="form-group"><label for="f-wa">WhatsApp</label><input type="tel" id="f-wa" placeholder="Ej: 2214282564" autocomplete="tel"></div>
+        </div>
+        <div class="form-group"><label for="f-email">Correo Gmail</label><input type="email" id="f-email" placeholder="tunombre@gmail.com" autocomplete="email"></div>
+        <div class="form-group">
+          <label for="f-dolor">¿Cuántos años tiene tu hijo/a?</label>
+          <select id="f-dolor">
+            <option value="" disabled selected>Selecciona el rango de edad</option>
+            <option>2-4 años (inicio temprano)</option>
+            <option>5-7 años (etapa escolar)</option>
+            <option>8-10 años (desarrollo activo)</option>
+            <option>11-13 años (preadolescencia)</option>
+            <option>14+ años / Tengo varios hijos</option>
+            <option>Quiero más información general</option>
+          </select>
+        </div>
+        <button class="form-submit" id="submit-btn" onclick="handleSubmit()">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          Enviarme la Guía Gratuita + 25% OFF
+        </button>
+        <p class="form-note">🔒 Tu información es privada. Solo Alexa tendrá acceso para enviarte la guía y la promo.</p>
+      </div>
+      <div class="form-success" id="form-success">
+        <div class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <h4>¡Registro exitoso! 🎉</h4>
+        <p>Alexa revisará tu caso y te enviará la guía personalizada por WhatsApp. También puedes escribirle directamente ahora mismo para aprovechar la promo del Día del Niño.</p>
+        <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20acabo%20de%20registrarme%20para%20recibir%20la%20gu%C3%ADa%20y%20la%20promo%20de%20Wimms" class="wa-confirm" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Escribirle a Alexa ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <span class="section-label">Tu momento es ahora</span>
+    <h2 class="section-title">¿Listo para darle a tu hijo<br>el mejor comienzo?</h2>
+    <div class="purple-line" style="margin:14px auto 0;"></div>
+    <p class="section-sub" style="margin:0 auto;text-align:center;">Escríbele ahora a Alexa. Asesoría personalizada GRATIS y acceso a la promo del Día del Niño con 25% de descuento en Wimms.</p>
+    <div class="cta-cards">
+      <div class="cta-reason"><span class="r-icon">🎯</span><strong>Asesoría Personalizada</strong>La dosis ideal para la edad de tu hijo</div>
+      <div class="cta-reason"><span class="r-icon">🚚</span><strong>Envío a México</strong>Recíbelo en tu puerta</div>
+      <div class="cta-reason"><span class="r-icon">💛</span><strong>25% Descuento</strong>Promo Día del Niño</div>
+      <div class="cta-reason"><span class="r-icon">🔬</span><strong>Respaldo Científico</strong>30+ años de investigación</div>
+      <div class="cta-reason"><span class="r-icon">🌎</span><strong>México · USA · Canadá</strong>Atención en 3 países</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20vi%20tu%20p%C3%A1gina%20y%20quiero%20la%20promo%20de%20Wimms%20para%20el%20D%C3%ADa%20del%20Ni%C3%B1o" class="cta-wa-main" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Escríbeme Ahora — 52 221 428 2564
+      </a>
+      <p class="cta-sub">Respondo personalmente · <strong>Sin compromiso · Asesoría 100% gratuita</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- PRESENTER — ALEXA TORRES -->
+<section class="presenter-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">Tu Consultora de Confianza</span>
+      <h2 class="section-title" style="font-size:clamp(1.6rem,3.5vw,2.5rem);">Hola, soy quien guiará<br>a tu familia hacia el bienestar</h2>
+    </div>
+    <div class="presenter-magnetic">
+      <div class="presenter-img-side">
+        <!-- Placeholder: reemplaza con foto real de Alexa Torres -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;padding:30px;">
+          <div style="width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--wimms1),var(--wimms2));display:flex;align-items:center;justify-content:center;font-size:4rem;box-shadow:0 0 40px rgba(168,85,247,0.5);">🌟</div>
+          <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;text-align:center;max-width:200px;">Sube aquí tu foto de perfil de Alexa Torres para personalizar esta sección</p>
+        </div>
+      </div>
+      <div class="presenter-info">
+        <div class="presenter-badge2">✦ ¡Wimms · Día del Niño 2026!</div>
+        <p class="presenter-name2">Alexa<br>Torres</p>
+        <p class="presenter-title2">Consultora Certificada · Immunotec Oficial</p>
+        <div class="presenter-div"></div>
+        <p class="presenter-desc2">Te brindo asesoría personalizada, honesta y gratuita para que elijas el producto ideal para la etapa de desarrollo de tu hijo. Acompañando familias hacia el bienestar con pasión, ciencia y resultados comprobados.</p>
+        <div class="presenter-stats">
+          <div class="p-stat"><strong>Wimms</strong><span>Especialista</span></div>
+          <div class="p-stat"><strong>3</strong><span>Países</span></div>
+          <div class="p-stat"><strong>100%</strong><span>Compromiso</span></div>
+        </div>
+        <div class="presenter-flags2">🇲🇽 🇺🇸 🇨🇦</div>
+        <div class="presenter-contact">
+          📱 52 221 428 2564<br>
+          🌐 immunotec.com/es-MX
+        </div>
+        <a href="https://wa.me/522214282564?text=Hola%20Alexa%2C%20quiero%20informaci%C3%B3n%20sobre%20Wimms%20para%20el%20D%C3%ADa%20del%20Ni%C3%B1o" class="presenter-wa2" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp: 52 221 428 2564
+        </a>
+        <a href="https://www.immunotec.com/es-MX" target="_blank" rel="noopener" class="presenter-store">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          immunotec.com/es-MX
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>Alexa Torres</span> · Consultora Independiente Immunotec · ¡Wimms · Día del Niño 2026!<br>
+  Este sitio no es propiedad de Immunotec Inc. Los testimonios son experiencias individuales. Wimms no reemplaza tratamientos médicos ni la orientación de un pediatra.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+const EJS_SERVICE  = 'TU_SERVICE_ID';
+const EJS_TEMPLATE = 'TU_TEMPLATE_ID';
+const EJS_KEY      = 'TU_PUBLIC_KEY';
+(function(){
+  if(typeof emailjs!=='undefined'&&EJS_KEY!=='TU_PUBLIC_KEY'){emailjs.init({publicKey:EJS_KEY});}
+})();
+
+function toggleDot(el){el.classList.toggle('active');}
+
+(function(){
+  const canvas=document.getElementById('dna-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[],strands=[];
+  const N_PARTICLES=80,N_STRANDS=3;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  class Particle{constructor(){this.reset();}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*2.2+0.5;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.alpha=Math.random()*.5+.1;this.hue=Math.random()<.6?270:(Math.random()<.5?30:200);}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`hsla(${this.hue},90%,65%,${this.alpha})`;ctx.fill();}}
+  for(let i=0;i<N_PARTICLES;i++)particles.push(new Particle());
+  class DNAStrand{constructor(x){this.xOff=x;this.t=Math.random()*Math.PI*2;this.speed=.004+Math.random()*.003;}draw(){const amp=40,freq=.022,steps=Math.ceil(H/8);this.t+=this.speed;for(let i=0;i<steps;i++){const y=(i/steps)*H,phase=y*freq+this.t,x1=this.xOff+Math.sin(phase)*amp,x2=this.xOff+Math.sin(phase+Math.PI)*amp,alpha=.25+.15*Math.abs(Math.sin(phase));ctx.beginPath();ctx.arc(x1,y,1.8,0,Math.PI*2);ctx.fillStyle=`rgba(168,85,247,${alpha})`;ctx.fill();ctx.beginPath();ctx.arc(x2,y,1.8,0,Math.PI*2);ctx.fillStyle=`rgba(249,115,22,${alpha})`;ctx.fill();if(i%3===0){const a2=.08+.07*Math.abs(Math.cos(phase));ctx.beginPath();ctx.moveTo(x1,y);ctx.lineTo(x2,y);ctx.strokeStyle=`rgba(168,85,247,${a2})`;ctx.lineWidth=.8;ctx.stroke();if(Math.abs(Math.sin(phase*3))>.7){ctx.beginPath();ctx.arc(x1,y,2.2,0,Math.PI*2);ctx.fillStyle=`rgba(249,115,22,${a2*2})`;ctx.fill();ctx.beginPath();ctx.arc(x2,y,2.2,0,Math.PI*2);ctx.fillStyle=`rgba(168,85,247,${a2*2})`;ctx.fill();}}}}}
+  for(let i=0;i<N_STRANDS;i++)strands.push(new DNAStrand(W*(i+1)/(N_STRANDS+1)));
+  window.addEventListener('resize',()=>{strands.forEach((s,i)=>s.xOff=W*(i+1)/(N_STRANDS+1));});
+  function drawConnections(){const maxDist=110;for(let i=0;i<particles.length;i++){for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<maxDist){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(124,58,237,${.12*(1-d/maxDist)})`;ctx.lineWidth=.5;ctx.stroke();}}}}
+  function loop(){ctx.clearRect(0,0,W,H);strands.forEach(s=>s.draw());drawConnections();particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(loop);}
+  loop();
+})();
+
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+const obs2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:.08});
+document.querySelectorAll('.testi-card,.wimms-product-card,.pillar-card').forEach((c,i)=>{c.style.opacity='0';c.style.transform='translateY(22px)';c.style.transition=`opacity .5s ease ${i*.06}s, transform .5s ease ${i*.06}s`;obs2.observe(c);});
+
+async function handleSubmit(){
+  const nombre=document.getElementById('f-nombre').value.trim();
+  const wa=document.getElementById('f-wa').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const dolor=document.getElementById('f-dolor').value;
+  const fecha=new Date().toLocaleString('es-MX',{timeZone:'America/Mexico_City'});
+  let valido=true;
+  ['f-nombre','f-wa','f-email','f-dolor'].forEach(id=>{const el=document.getElementById(id);if(!el.value.trim()){valido=false;el.style.borderColor='#ff4466';el.style.boxShadow='0 0 0 3px rgba(255,68,102,0.2)';setTimeout(()=>{el.style.borderColor='';el.style.boxShadow='';},3000);}});
+  if(!valido)return;
+  const btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.innerHTML='<svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff;animation:spin 1s linear infinite;"><path d="M12 4V2A10 10 0 0 0 2 12h2a8 8 0 0 1 8-8z"/></svg> Enviando...';
+  const templateParams={to_email:'polotorresceo@gmail.com',reply_to:email,fecha,nombre,whatsapp:wa,email_lead:email,condicion:dolor,fuente:'Funnel Alexa Torres – Wimms Día del Niño 2026'};
+  try{
+    if(typeof emailjs!=='undefined'&&EJS_KEY!=='TU_PUBLIC_KEY'){await emailjs.send(EJS_SERVICE,EJS_TEMPLATE,templateParams);showSuccess(nombre);return;}
+    const resp=await fetch('https://formspree.io/f/xpwzgdjk',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_replyto:email,_subject:`🍬 Nuevo Lead Wimms: ${nombre} – ${dolor}`,Fecha:fecha,Nombre:nombre,WhatsApp:wa,Email:email,Condicion:dolor,Fuente:'Funnel Alexa Torres – Wimms Día del Niño'})});
+    if(resp.ok){showSuccess(nombre);}else{window.open(`mailto:polotorresceo@gmail.com?subject=${encodeURIComponent('🍬 Nuevo Lead Wimms: '+nombre)}&body=${encodeURIComponent('NUEVO LEAD\n\nFecha: '+fecha+'\nNombre: '+nombre+'\nWhatsApp: '+wa+'\nEmail: '+email+'\nHijo/a edad: '+dolor)}`,'_blank');showSuccess(nombre);}
+  }catch(err){window.open(`mailto:polotorresceo@gmail.com?subject=${encodeURIComponent('🍬 Nuevo Lead Wimms: '+nombre)}&body=${encodeURIComponent('NUEVO LEAD\n\nNombre: '+nombre+'\nWhatsApp: '+wa+'\nEmail: '+email+'\nHijo/a edad: '+dolor)}`,'_blank');showSuccess(nombre);}
+}
+function showSuccess(nombre){
+  document.getElementById('lead-form').style.display='none';
+  const s=document.getElementById('form-success');
+  const h4=s.querySelector('h4');
+  if(h4&&nombre)h4.textContent='¡Listo, '+nombre.split(' ')[0]+'! 🎉';
+  s.style.display='block';s.style.animation='fade-in-up .6s ease both';
+}
+const spinStyle=document.createElement('style');
+spinStyle.textContent='@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}';
+document.head.appendChild(spinStyle);
+</script>
+</body>
+</html>
