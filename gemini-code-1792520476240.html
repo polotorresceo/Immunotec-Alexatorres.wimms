@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wimms Immunotec - Edición Especial Día de Muertos 💀 | Energía para tus Pequeños Alebrijes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* --- PALETA ACTUALIZADA: DÍA DE MUERTOS (Inspiración Coco/Flyer) --- */
+  --navy:#020b1a; /* Fondo principal noche mística */
+  --navy2:#0a0121; /* Fondo secundario morado muy profundo */
+  --blue:#0a4dff;
+  --blue2:#0635cc;
+  --cyan:#00d4ff;
+  --teal:#00ffcc;
+  
+  /* Cempasúchil y Dorados (Tomados de image_1.png) */
+  --gold:#c8922a;
+  --cempasuchil:#f97316; /* Naranja Cempasúchil intenso */
+  --cempasuchil2:#fbbf24; /* Amarillo Cempasúchil brillante */
+  --gold3:#f5d98a;
+  
+  --white:#ffffff;
+  --mist:#a8c4d8;
+  --verde:#00c47a; /* Verde para acentos de vida */
+  
+  /* Wimms Especial Día de Muertos */
+  --wimms1:#7c3aed; /* Morado tradicional */
+  --wimms2:#a855f7; /* Morado brillante */
+  --wimms3:var(--cempasuchil);
+  --wimms4:#06b6d4;
+  --wimms5:#10b981;
+  
+  /* Acentos Kids Calaverita */
+  --kids-red:#ef4444; /* Rojo papel picado */
+  --kids-blue:#3b82f6; /* Azul papel picado */
+  --kids-yellow:var(--cempasuchil2); /* Amarillo papel picado */
+  
+  /* Acentos Místicos */
+  --vela-glow: rgba(251, 191, 36, 0.4); /* Brillo de vela caliente */
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;position:relative;}
+
+/* ── DNA CANVAS (Estilo Cempasúchil/Morado) ── */
+#dna-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.25;}
+
+/* ── NAVBAR ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 32px;
+  background:rgba(2,11,26,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:2px solid var(--cempasuchil); /* Borde Cempasúchil */
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{height:42px;filter:brightness(1.4) drop-shadow(0 0 10px rgba(249,115,22,0.4));}
+.nav-store{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cempasuchil2);opacity:0.8;font-weight:500;display:none;}
+@media(min-width:600px){.nav-store{display:block;}}
+.nav-wa{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,#25d366,#1aad52);
+  color:#fff;font-size:0.82rem;font-weight:700;
+  padding:9px 20px;border-radius:40px;text-decoration:none;
+  box-shadow:0 4px 16px rgba(37,211,102,0.3);transition:transform .2s;white-space:nowrap;
+}
+.nav-wa:hover{transform:translateY(-2px);}
+.nav-wa svg{width:16px;height:16px;fill:#fff;flex-shrink:0;}
+.nav-wa-txt{display:none;}
+@media(min-width:520px){.nav-wa-txt{display:inline;}}
+@media(max-width:480px){.navbar{padding:10px 14px;}.nav-logo img{height:28px;}}
+
+/* ── FLOAT WA ── */
+.float-wa{
+  position:fixed;bottom:24px;right:24px;z-index:8999;
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#1aad52);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 28px rgba(37,211,102,0.5);text-decoration:none;
+  animation:wa-pulse 2.5s ease-in-out infinite;transition:transform .2s;
+}
+.float-wa:hover{transform:scale(1.1);}
+.float-wa svg{width:28px;height:28px;fill:#fff;}
+@keyframes wa-pulse{0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.5);}50%{box-shadow:0 8px 40px rgba(37,211,102,0.8);}}
+
+/* ── BANNER WIMMS ( Placeholder para banner 4k ) ── */
+/* Mantenemos el estilo de padding, pero el contenido se insertará dinámicamente */
+.banner-wimms{width:100%;display:block;line-height:0;position:relative;z-index:1;padding-top:68px; background:var(--navy2);}
+.banner-wimms img{width:100%;height:auto;display:block;border-bottom:3px solid var(--cempasuchil);}
+@media(max-width:480px){.banner-wimms{padding-top:52px;}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:92vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 20px 80px;z-index:1;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(168,85,247,0.15) 0%,transparent 70%); /* Glow Morado místico */
+  pointer-events:none;
+}
+/* Floating emoji kids decorations - ACTUALIZADOS A DÍA DE MUERTOS */
+.hero-float{position:absolute;font-size:2.2rem;animation:float-random 6s ease-in-out infinite;pointer-events:none;z-index:0;opacity:0.6;}
+.hero-float:nth-child(1){top:12%;left:8%;animation-delay:0s;}
+.hero-float:nth-child(2){top:18%;right:9%;animation-delay:1.2s;}
+.hero-float:nth-child(3){top:65%;left:5%;animation-delay:2.4s;}
+.hero-float:nth-child(4){top:60%;right:6%;animation-delay:0.8s;}
+.hero-float:nth-child(5){top:38%;left:3%;animation-delay:3s;}
+.hero-float:nth-child(6){top:40%;right:3%;animation-delay:1.8s;}
+@keyframes float-random{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-18px) rotate(5deg);}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--wimms2),var(--cempasuchil)); /* Degradado místico */
+  padding:8px 22px;border-radius:50px;
+  font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;
+  color:#fff;font-weight:800;margin-bottom:28px;
+  animation:fade-in-down 1s ease both,badge-pulse-cempasuchil 2.5s ease-in-out 1s infinite;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#fff;opacity:0.8;animation:dot-blink 1.5s ease-in-out infinite;}
+@keyframes badge-pulse-cempasuchil{0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,0.6);}50%{box-shadow:0 0 0 16px rgba(249,115,22,0);}}
+@keyframes dot-blink{0%,100%{opacity:0.8;}50%{opacity:0.2;}}
+@keyframes fade-in-down{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade-in-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+.hero h1{
+  font-family:'Nunito',sans-serif;
+  font-size:clamp(2.2rem,5.5vw,4.8rem);font-weight:900;line-height:1.1;
+  max-width:860px;margin-bottom:22px;
+  background:linear-gradient(135deg,#fff 0%,var(--cempasuchil2) 30%,var(--wimms2) 60%,#fff 100%); /* Texto brillante cempasúchil/morado */
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fade-in-up 1s ease 0.2s both;position:relative;z-index:1;
+}
+.hero-sub{
+  font-size:clamp(0.95rem,2.2vw,1.15rem);color:var(--mist);font-weight:300;
+  max-width:640px;line-height:1.75;margin-bottom:40px;
+  animation:fade-in-up 1s ease 0.4s both;position:relative;z-index:1;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25d366,#1aad52);
+  color:#fff;font-size:1.05rem;font-weight:700;
+  padding:17px 38px;border-radius:60px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(37,211,102,0.4);
+  transition:transform .2s,box-shadow .2s;animation:fade-in-up 1s ease 0.6s both;
+  position:relative;z-index:1;
+}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(37,211,102,0.55);}
+.hero-cta svg{width:22px;height:22px;fill:#fff;}
+.scroll-hint{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  color:rgba(249,115,22,0.4);font-size:0.7rem;letter-spacing:3px;
